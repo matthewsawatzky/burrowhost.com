@@ -2,39 +2,121 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>BurrowHost</title>
+  <title>BurrowHost - Ideas</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-  <div class="card">
-    <h1>Hello world!</h1>
-
-    <p>This is BurrowHost,</p>
-
-    <p>
-      A service that will host your Minecraft server and manage it for you.
-      Want a new game? A new set of rules to play by? Just ask and we can find you all the right mods,
-      plugins, resource packs you want!
+<body class="page">
+  <header class="hero hero--simple">
+    <p class="eyebrow">Fully managed Minecraft hosting</p>
+    <h1>Stress-free Minecraft hosting, fully managed.</h1>
+    <p class="lede">
+      We provide fully managed Minecraft servers for players who want a smooth, stress-free experience without the
+      technical setup or maintenance. Tell us what you want; we build, optimize, and maintain it so you can just play.
     </p>
+    <div class="hero__actions">
+      <a class="button button--accent" href="mailto:contact@burrowhost.com">Email us your wishlist</a>
+      <a class="button button--ghost" href="#pricing">View Pricing List</a>
+    </div>
+    <ul class="pillars" id="quote-rotator">
+        <li></li>
+    </ul>
+  </header>
 
-    <p>
-      If you want to help us test our service, you will get a month of a server
-      paid for and managed by us, as long as you are okay giving us feedback
-      on what you would want to pay for and what you think we can do better!
-    </p>
+  <main class="content">
+    <section class="section" id="pricing">
+      <div class="section__header">
+        <p class="eyebrow">Managed plans</p>
+        <h2>Pick a plan; we handle the technical work.</h2>
+        <p class="muted">No setup required. Every plan includes install-on-request mods, monitoring, backups, and friendly support.</p>
+      </div>
+      <div class="pricing-grid">
+        <article class="plan">
+          <p class="plan__name">Managed Server Tier 1</p>
+          <p class="plan__price">€20<span>/mo</span></p>
+          <p class="plan__desc">For friends who want a simple, reliable world without managing the tech.</p>
+          <ul class="plan__features">
+            <li>~5 Players + Mods</li>
+            <li>~12 Players + Vanilla</li>
+            <li>
+                <a class="SC_link"
+                    href="mailto:contact@burrowhost.com?subject=Tier%202%20Managed%20Server%20Inquiry&body=request_code:%20MST1">
+                    Contact</a>
+                for more info
+            </li>
+          </ul>
+        </article>
+        <article class="plan">
+            <p class="plan__name">Managed Server Tier 2</p>
+            <p class="plan__price">€40<span>/mo</span></p>
+            <p class="plan__desc">For friends who want a simple, reliable world without managing the tech.</p>
+            <ul class="plan__features">
+            <li>~10 Players + Mods</li>
+            <li>~20 Players + Vanilla</li>
+            <li>
+                <a class="SC_link"
+                    href="mailto:contact@burrowhost.com?subject=Tier%202%20Managed%20Server%20Inquiry&body=request_code:%20MST2">
+                    Contact</a>
+                for more info
+            </li>
 
-    <p class="email">
-      Contact at: <a href="mailto:contact@burrowhost.com">contact@burrowhost.com</a>
-    </p>
+            </ul>
+        </article>
+        <article class="plan">
+          <p class="plan__name">Managed Server Tier 3</p>
+          <p class="plan__price">€60<span>/mo</span></p>
+          <p class="plan__desc">For friends who want a simple, reliable world without managing the tech.</p>
+          <ul class="plan__features">
+            <li>~20 Players + Mods</li>
+            <li>~50 Players + Vanilla</li>
+            <li>
+                <a class="SC_link"
+                    href="mailto:contact@burrowhost.com?subject=Tier%202%20Managed%20Server%20Inquiry&body=request_code:%20MST3">
+                    Contact</a>
+                for more info
+            </li>
+          </ul>
+        </article> 
+    </section>
 
-    <p class="foot">
-      Thanks for reading this page.  
-      It’s simple for now, but we’re improving things fast. Stick around!
-    </p>
-    <p class="link">
-      Join our <a href="https://discord.gg/tswwvNK6" target="_blank" rel="noopener noreferrer">Discord</a>
-    </p>
-    
+    <section class="section section--split" id="contact">
+      <div>
+        <p class="eyebrow">Talk to us</p>
+        <h2>Need something specific or just looking?</h2>
+        <p class="muted">
+            Want more players, a specific mod, or help migrating from another host? Tell us what you need!
+            We’ll handle the setup, keep everything running smoothly, and make any tweaks you request.
+        </p>
+      </div>
+      <div class="contact-card">
+        <p class="contact-card__title">Get in touch</p>
+        <a class="button button--accent" href="mailto:contact@burrowhost.com">Email contact@burrowhost.com</a>
+        <a class="button button--ghost" href="https://discord.com/invite/jhf452Gx" target="_blank" rel="noopener noreferrer">Chat on Discord</a>
+      </div>
+    </section>
+  </main>
 </body>
+<script>
+  const quotes = [
+  "We handle mods, updates, and backups.",
+  "Friendly, human support.",
+  "No setup required—just play.",
+  ];
+
+    let index = 0;
+    const li = document.querySelector("#quote-rotator li");
+
+    // Set initial content (convert \n → <br>)
+    li.innerHTML = quotes[index].replace(/\n/g, "<br>");
+
+    setInterval(() => {
+    li.style.opacity = 0;
+
+    setTimeout(() => {
+        index = (index + 1) % quotes.length;
+        li.innerHTML = quotes[index].replace(/\n/g, "<br>");
+        li.style.opacity = 1;
+    }, 300);
+    }, 5000);
+</script>
 </html>

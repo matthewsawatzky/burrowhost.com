@@ -1,3 +1,7 @@
 business_notes.txt
 messaging_guide.txt
-.gitignore
+dev_server.py
+.venv/
+test.html
+tier_pages.html
+idea.html
