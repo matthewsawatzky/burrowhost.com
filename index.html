@@ -39,10 +39,7 @@
             <li>~5 Players + Mods</li>
             <li>~12 Players + Vanilla</li>
             <li>
-                <a class="SC_link"
-                    href="mailto:contact@burrowhost.com?subject=Tier%202%20Managed%20Server%20Inquiry&body=request_code:%20MST1">
-                    Contact</a>
-                for more info
+                <a class="button_small button_small--accent" onclick="contactform('Tier 1')">Select</a>
             </li>
           </ul>
         </article>
@@ -54,10 +51,7 @@
             <li>~10 Players + Mods</li>
             <li>~20 Players + Vanilla</li>
             <li>
-                <a class="SC_link"
-                    href="mailto:contact@burrowhost.com?subject=Tier%202%20Managed%20Server%20Inquiry&body=request_code:%20MST2">
-                    Contact</a>
-                for more info
+                <a class="button_small button_small--accent" onclick="contactform('Tier 2')">Select</a>
             </li>
 
             </ul>
@@ -70,10 +64,7 @@
             <li>~20 Players + Mods</li>
             <li>~50 Players + Vanilla</li>
             <li>
-                <a class="SC_link"
-                    href="mailto:contact@burrowhost.com?subject=Tier%202%20Managed%20Server%20Inquiry&body=request_code:%20MST3">
-                    Contact</a>
-                for more info
+                <a class="button_small button_small--accent" onclick="contactform('Tier 3')">Select</a>
             </li>
           </ul>
         </article> 
@@ -97,6 +88,10 @@
   </main>
 </body>
 <script>
+    function contactform(tiername) {
+        window.location.href = `contact.html?tiername=${tiername}`;
+    }
+
   const quotes = [
   "We handle mods, updates, and backups.",
   "Friendly, human support.",
@@ -118,5 +113,7 @@
         li.style.opacity = 1;
     }, 300);
     }, 5000);
+
+    
 </script>
 </html>

@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>BurrowHost - Contact</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="page">
+  <header class="hero hero--simple">
+    <p class="eyebrow">Contact</p>
+    <h1>Tell us what you want—we’ll handle the setup.</h1>
+    <p class="lede">
+      Share the server you have in mind. We’ll build it, keep it smooth, and support you with friendly, human help.
+    </p>
+  </header>
+
+  <main class="content">
+    <section class="section">
+      <div class="section__header">
+        <p class="eyebrow">Start a request</p>
+        <h2>We’ll draft an email in five quick steps.</h2>
+        <p class="muted">Answer a few questions, then we'll assemle them into an email draft you can send us</p>
+      </div>
+      <form id="contactForm" class="contact-form">
+        <div class="stepper" aria-label="Progress">
+          <button type="button" class="step-dot active" data-step="1" aria-label="Go to Basics">1</button>
+          <button type="button" class="step-dot" data-step="2" aria-label="Go to Server details">2</button>
+          <button type="button" class="step-dot" data-step="3" aria-label="Go to Preferences">3</button>
+          <button type="button" class="step-dot" data-step="4" aria-label="Go to Anything else">4</button>
+          <button type="button" class="step-dot" data-step="5" aria-label="Go to Draft again">5</button>
+        </div>
+
+        <div class="form-step active" data-step="1">
+          <h3 class="step-title">Basics</h3>
+          <div class="form-grid">
+            <label class="field">
+              <span>Username</span>
+              <input type="text" name="name" required placeholder="Your username" />
+              <span class="error-text" aria-live="polite"></span>
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" required placeholder="you@example.com" />
+              <span class="error-text" aria-live="polite"></span>
+            </label>
+            <label class="field">
+              <span>Phone (optional)</span>
+              <input type="tel" name="phone" placeholder="555-123-4567" />
+            </label>
+          </div>
+        </div>
+
+        <div class="form-step" data-step="2">
+          <h3 class="step-title">Server details</h3>
+          <div class="form-grid">
+            <label class="field">
+              <div class="field__label">
+                <span title="Choose the type of server you want">Server type</span>
+                <span class="field__hint" id="serverTypeHint"></span>
+              </div>
+              <select name="serverType" required>
+                <option value="" disabled selected>Select an option</option>
+                <option value="Tier 1">Tier 1</option>
+                <option value="Tier 2">Tier 2</option>
+                <option value="Tier 3">Tier 3</option>
+                <option value="Custom">Custom</option>
+              </select>
+              <span class="error-text" aria-live="polite"></span>
+            </label>
+            <label class="field">
+              <span>Player count</span>
+              <input type="text" name="players" placeholder="Estimated players?" />
+              <span class="error-text" aria-live="polite"></span>
+            </label>
+            <label class="field">
+              <span>Deadline</span>
+              <input type="text" name="deadline" placeholder="Most servers will be up the same day!" />
+              <span class="error-text" aria-live="polite"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-step" data-step="3">
+          <h3 class="step-title">Preferences</h3>
+          <div class="form-grid">
+            <label class="field full">
+              <span>Mods you have in mind</span>
+              <textarea name="mods" rows="3" placeholder="List any modpacks, plugins, or must-have mods"></textarea>
+            </label>
+            <label class="field full">
+              <span>Feel or vibe</span>
+              <textarea name="feel" rows="3" placeholder="War, survival, cozy building, tech, magic, etc."></textarea>
+            </label>
+            <label class="field">
+              <span>Are you migrating from another host?</span>
+              <select name="migration">
+                <option value="" disabled selected>Select an option</option>
+                <option value="No">No</option>
+                <option value="Yes - need help migrating">Yes - need help migrating</option>
+                <option value="Yes - I have backups ready">Yes - I have backups ready</option>
+              </select>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-step" data-step="4">
+          <h3 class="step-title">Anything else</h3>
+          <div class="form-grid">
+            <label class="field full">
+              <span>Other details</span>
+              <textarea name="notes" rows="3" placeholder="World backups, schedules, special requests"></textarea>
+            </label>
+          </div>
+        </div>
+
+        <div class="form-step" data-step="5">
+          <h3 class="step-title">Draft and resend</h3>
+          <p class="muted">Open your email draft with the details you provided. If it doesn’t open or you close it, you can launch it again below without retyping anything.</p>
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="button button--ghost" id="prevStep">Back</button>
+          <button type="button" class="button button--accent" id="nextStep">Next</button>
+          <button type="submit" class="button button--accent" id="submitForm">Draft email</button>
+        </div>
+        <p class="muted small-note">We’ll assemble your details into a mailto link to contact@burrowhost.com. <br>And don’t worry - you can change mods and things later, just by asking!</p>
+      </form>
+      <a id="mailtoLink" href="mailto:contact@burrowhost.com" class="visually-hidden">Email</a>
+    </section>
+  </main>
+
+  <script>
+
+    
+    const params = new URLSearchParams(window.location.search);
+    const selected = params.get("tiername");
+    document.serverType = selected;
+
+
+    const form = document.getElementById('contactForm');
+    const mailtoLink = document.getElementById('mailtoLink');
+    const steps = Array.from(document.querySelectorAll('.form-step'));
+    const stepDots = Array.from(document.querySelectorAll('.step-dot'));
+    const prevBtn = document.getElementById('prevStep');
+    const nextBtn = document.getElementById('nextStep');
+    const submitBtn = document.getElementById('submitForm');
+    const draftAgainBtn = document.getElementById('draftAgain');
+    const resendRow = document.getElementById('resendRow');
+    const serverTypeHint = document.getElementById('serverTypeHint');
+    const serverTypeSelect = form.querySelector('select[name="serverType"]');
+    let currentStep = 1;
+    let lastMailtoHref = '';
+
+    const serverRecommendations = {
+      'Tier 1': 'Recommended: ~7 Players max',
+      'Tier 2': 'Recommended: ~15 Players max',
+      'Tier 3': 'Recommended: ~30 Players max',
+      Custom: 'Its custom! Let us know what you need!',
+    };
+
+    const updateServerHint = () => {
+      const value = serverTypeSelect?.value;
+      if (value && serverRecommendations[value]) {
+        serverTypeHint.textContent = serverRecommendations[value];
+      } else {
+        serverTypeHint.textContent = '';
+      }
+    };
+
+    const setServerTypeFromQuery = () => {
+      const params = new URLSearchParams(window.location.search);
+      const paramValue = params.get('serverType') || params.get('server_type') || params.get('tiername') || params.get('tier');
+      if (!paramValue || !serverTypeSelect) return;
+      const normalized = paramValue.trim().toLowerCase();
+      const option = Array.from(serverTypeSelect.options).find((opt) => opt.value.toLowerCase() === normalized);
+      if (option) {
+        serverTypeSelect.value = option.value;
+        updateServerHint();
+      }
+    };
+
+    const requiredFieldsByStep = {
+      1: ['name', 'email'],
+      2: ['serverType'],
+      3: [],
+      4: [],
+      5: [],
+    };
+
+    const clearErrors = (step) => {
+      const fields = steps[step - 1].querySelectorAll('.field');
+      fields.forEach((field) => {
+        field.classList.remove('has-error');
+        const error = field.querySelector('.error-text');
+        if (error) error.textContent = '';
+      });
+    };
+
+    const validateStep = (step) => {
+      let isValid = true;
+      clearErrors(step);
+      const requiredNames = requiredFieldsByStep[step] || [];
+
+      requiredNames.forEach((name) => {
+        const input = form.querySelector(`[name="${name}"]`);
+        const value = input?.value?.trim();
+        if (!value) {
+          isValid = false;
+          const field = input.closest('.field');
+          field?.classList.add('has-error');
+          const error = field?.querySelector('.error-text');
+          if (error) {
+            const label = field.querySelector('span')?.textContent || 'This field';
+            error.textContent = `${label} is required.`;
+          }
+        }
+      });
+
+      return isValid;
+    };
+
+    const showStep = (step) => {
+      steps.forEach((el) => el.classList.toggle('active', Number(el.dataset.step) === step));
+      stepDots.forEach((dot) => dot.classList.toggle('active', Number(dot.dataset.step) === step));
+      prevBtn.style.visibility = step === 1 ? 'hidden' : 'visible';
+      nextBtn.style.display = step === steps.length ? 'none' : 'inline-flex';
+      submitBtn.style.display = step === steps.length ? 'inline-flex' : 'none';
+      // disable reopen until we have a draft url
+      if (draftAgainBtn) {
+        draftAgainBtn.disabled = !lastMailtoHref;
+      }
+      currentStep = step;
+    };
+
+    prevBtn.addEventListener('click', () => {
+      if (currentStep > 1) showStep(currentStep - 1);
+    });
+
+    nextBtn.addEventListener('click', () => {
+      if (!validateStep(currentStep)) return;
+      if (currentStep < steps.length) showStep(currentStep + 1);
+    });
+
+    stepDots.forEach((dot) => {
+      dot.addEventListener('click', () => {
+        const targetStep = Number(dot.dataset.step);
+        // ensure all required fields in previous steps are valid before jumping
+        for (let s = 1; s <= Math.min(targetStep, steps.length); s += 1) {
+          if (!validateStep(s)) {
+            showStep(s);
+            return;
+          }
+        }
+        showStep(targetStep);
+      });
+    });
+
+    if (serverTypeSelect) {
+      serverTypeSelect.addEventListener('change', updateServerHint);
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      // validate current step before finalizing
+      if (!validateStep(currentStep)) {
+        return;
+      }
+
+      // ensure required fields in all steps are filled
+      for (let s = 1; s <= steps.length; s += 1) {
+        if (!validateStep(s)) {
+          showStep(s);
+          return;
+        }
+      }
+
+      const data = new FormData(form);
+
+      const fields = [
+        ['Email', data.get('email')],
+        ['Username', data.get('name')],
+        ['Phone', data.get('phone')],
+        ['Server type', data.get('serverType')],
+        ['Mods', data.get('mods')],
+        ['Feel', data.get('feel')],
+        ['Player count', data.get('players')],
+        ['Timeline', data.get('deadline')],
+        ['Migration', data.get('migration')],
+        ['Other notes', data.get('notes')],
+      ];
+
+      const preface = [
+        'Managed Minecraft server request (generated via the BurrowHost contact form).',
+        'You can add anything else below the line.',
+        
+      ];
+
+      const lines = fields
+        .filter(([, value]) => value && value.toString().trim().length > 0)
+        .map(([label, value]) => `${label}: ${value.toString().trim()}`);
+
+      const subject = encodeURIComponent('Managed Minecraft server request');
+      const body = encodeURIComponent([...preface, '', ...lines, '', '-----------------------------------------------------'].join('\n'));
+
+      lastMailtoHref = `mailto:contact@burrowhost.com?subject=${subject}&body=${body}`;
+      mailtoLink.href = lastMailtoHref;
+      mailtoLink.click();
+      showStep(5);
+      if (draftAgainBtn) {
+        draftAgainBtn.disabled = false;
+      }
+    });
+
+    if (draftAgainBtn) {
+      draftAgainBtn.addEventListener('click', () => {
+        if (lastMailtoHref) {
+          mailtoLink.href = lastMailtoHref;
+          mailtoLink.click();
+        }
+      });
+    }
+
+    setServerTypeFromQuery();
+    updateServerHint();
+    showStep(1);
+  </script>
+</body>
+</html>
