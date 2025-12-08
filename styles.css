@@ -1,5 +1,5 @@
 /* Shared theme tokens */
-/*v4*/
+/*v5*/
 :root {
   --bg: #0f1012;
   --fg: #16181c;
@@ -454,6 +454,22 @@ h1 {
   font-size: 0.8rem;
   color: var(--muted);
   margin: 0 0 0.25rem;
+}
+
+.eyebrow-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  text-decoration: none;
+}
+
+.eyebrow-link:hover {
+  color: var(--showcase-title);
+  text-decoration: underline;
 }
 
 .lede {
