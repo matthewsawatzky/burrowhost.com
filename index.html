@@ -158,14 +158,17 @@
 
 
     
-    (function () {
-      var img = new Image();
-      var params = new URLSearchParams({
-        path: location.pathname,
-        ref: document.referrer || ""
-      });
-      img.src = "https://orboul.com/hit?" + params.toString();
-    })();
+    
+  (function () {
+    var img = new Image();
+    var params = new URLSearchParams({
+      path: location.pathname,
+      ref: document.referrer || ""
+    });
+
+    img.src = "http://stats.orboul.com/hit?" + params.toString();
+  })();
+
 
     
 </script>
