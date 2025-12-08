@@ -3,7 +3,8 @@ cloudflare failed need to redeploy
 
 Banner for when needed:
 
-<div class="announcement-banner">
-    <strong class="announcement-banner__label">Play free for a month</strong>
-    <span class="announcement-banner__text">We’re inviting a few players to jump on our server for free for one month in exchange for feedback.</span>
-  </div>
+
+
+
+
+  had to rebuild
