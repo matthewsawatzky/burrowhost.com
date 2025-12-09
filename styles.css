@@ -1,5 +1,5 @@
 /* Shared theme tokens */
-/*v5*/
+/*v6*/
 :root {
   --bg: #0f1012;
   --fg: #16181c;
@@ -32,7 +32,7 @@ body {
   align-items: center;
   padding: 0.85rem 1rem;
   margin-bottom: 1rem;
-  background: #5b2d2d;
+  background: #2d5b2f;
   color: #f8eaea;
   border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: 12px;
